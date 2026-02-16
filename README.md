@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# Movie Directory Project (Kada Batch 3)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Mini Project direktori film menggunakan React, Redux Toolkit, dan TMDB API.
 
-## Available Scripts
+## Project Setup (Sudah Selesai)
+- **Framework**: Create React App (CRA)
+- **State Management**: Redux Toolkit (Store, Slice, AsyncThunk)
+- **Routing**: React Router DOM
+- **API**: Axios (TMDB)
 
-In the project directory, you can run:
+## Pembagian Tugas
 
-### `npm start`
+### 1. Setup & Redux Core (@NorpajSucces) - **DONE ✅**
+- Setup struktur folder & CRA.
+- Setup Redux Store & Slice (`movieSlice.js`).
+- Setup fungsi API: `fetchPopular`, `searchMovies`, `fetchDetail`, `fetchGenres`, `fetchByGenre`.
+- Setup Routing & Navigation (`App.js`).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 2. Home Page (Member 2)
+- Tampilkan daftar "Popular Movies" di halaman utama.
+- Gunakan selector: `state.movies`.
+- Gunakan action: `fetchPopularMovies()`.
+- Layout: Flexbox/Grid responsif.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 3. Search Movie (Member 3)
+- Buat input search.
+- Saat user mengetik/submit, panggil `dispatch(searchMovies(keyword))`.
+- Tampilkan hasil pencarian (gunakan selector `state.movies`).
 
-### `npm test`
+### 4. Movie Detail (Member 4)
+- Ambil ID dari URL (`useParams`).
+- Panggil `dispatch(fetchMovieDetail(id))`.
+- Tampilkan detail lengkap film (Judul, Poster, Deskripsi, Rating, dll).
+- Tombol "Add to Favorite".
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 5. Favorites + Category (Member 5)
+- **Favorites**: Tampilkan list film yang disukai (dari state `favorites`).
+- **Category**: Tampilkan daftar genre (`fetchGenres`) & list film per genre (`fetchMoviesByGenre`).
 
-### `npm run build`
+## Cara Menjalankan Project (Untuk Anggota Tim)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Clone Repo**
+   ```bash
+   git clone https://github.com/NorpajSucces/movie-directory-kada.git
+   cd movie-directory-kada
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **Buat File `.env`**
+   Copy isi dari `.env.example` (atau minta ke ketua tim) ke file baru bernama `.env`:
+   ```env
+   REACT_APP_TMDB_API_KEY=bc998fa94ab6a96a40fc661452272274
+   REACT_APP_TMDB_BASE_URL=https://api.themoviedb.org/3
+   ```
 
-### `npm run eject`
+4. **Jalankan Project**
+   ```bash
+   npm start
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Catatan Redux (PENTING!)
+Semua request API **WAJIB** lewat Redux Thunk di `src/features/movies/movieSlice.js`. Jangan fetch API langsung di component!
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Gunakan `useSelector` untuk ambil data, dan `useDispatch` untuk panggil fungsi.
