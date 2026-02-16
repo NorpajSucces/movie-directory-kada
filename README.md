@@ -11,7 +11,7 @@ Tujuan project ini adalah **LEARNING BY DOING**. Setiap anggota tim memiliki tug
 
 ## Pembagian Tugas
 
-### 1. Setup & Redux Core (@NorpajSucces) - **DONE ✅**
+### 1. Setup & Redux Core 
 - Setup struktur folder & CRA.
 - Setup Redux Store & Slice (`movieSlice.js`).
 - Setup Routing & Navigation (`App.js`).
