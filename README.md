@@ -1,7 +1,7 @@
 # Movie Directory Project (Kada Batch 3)
 
 Mini Project direktori film menggunakan React, Redux Toolkit, dan TMDB API.
-Tujuan project ini adalah **LEARNING BY DOING**. Setiap anggota tim memiliki tugas coding masing-masing untuk memahami materi React Redux.
+T
 
 ## Project Setup (Sudah Selesai)
 - **Framework**: Create React App (CRA)
@@ -15,16 +15,15 @@ Tujuan project ini adalah **LEARNING BY DOING**. Setiap anggota tim memiliki tug
 - Setup struktur folder & CRA.
 - Setup Redux Store & Slice (`movieSlice.js`).
 - Setup Routing & Navigation (`App.js`).
-- Membuat **TEMPLATE** Redux Thunk & Reducer untuk diisi oleh member lain.
 
-### 2. Home Page (Member 2)
+### 2. Home Page 
 - Buka file `src/pages/Home.js`:
   - Implementasi logika `useEffect` & `useSelector`.
 - Buka file `src/features/movies/movieSlice.js`:
   - Isi fungsi `fetchPopularMovies` (panggil API `/movie/popular`).
   - Tambahkan case `pending`, `fulfilled`, `rejected` di `extraReducers`.
 
-### 3. Search Movie (Member 3)
+### 3. Search Movie 
 - Buka file `src/pages/Search.js`:
   - Buat state input search (`useState`).
   - Handle submit & dispatch action `searchMovies`.
@@ -32,7 +31,7 @@ Tujuan project ini adalah **LEARNING BY DOING**. Setiap anggota tim memiliki tug
   - Isi fungsi `searchMovies` (panggil API `/search/movie`).
   - Tambahkan case di `extraReducers`.
 
-### 4. Movie Detail (Member 4)
+### 4. Movie Detail
 - Buka file `src/pages/MovieDetail.js`:
   - Ambil parameter ID dari URL.
   - Dispatch `fetchMovieDetail`.
@@ -40,7 +39,7 @@ Tujuan project ini adalah **LEARNING BY DOING**. Setiap anggota tim memiliki tug
   - Isi fungsi `fetchMovieDetail` (panggil API `/movie/{id}`).
   - Tambahkan case di `extraReducers`.
 
-### 5. Favorites + Category (Member 5)
+### 5. Favorites + Category 
 - **Favorites**:
   - Implementasi `addToFavorites` & `removeFromFavorites` di reducer `movieSlice.js`.
   - Tampilkan list di `src/pages/Favorites.js`.
