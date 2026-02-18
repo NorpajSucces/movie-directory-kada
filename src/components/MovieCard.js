@@ -1,29 +1,36 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToFavorites, removeFromFavorites } from '../features/movies/movieSlice';
+import '../App.css'; // Ensure CSS is available if not globally imported efficiently
 
 const MovieCard = ({ movie }) => {
-    const { title, poster_path, release_date, vote_average } = movie;
+    const dispatch = useDispatch();
+    const { favorites } = useSelector((state) => state.movies);
+    const { id, title, poster_path, release_date, vote_average } = movie;
     const year = release_date ? release_date.split('-')[0] : 'N/A';
     const imageUrl = poster_path
         ? `https://image.tmdb.org/t/p/w500${poster_path}`
         : 'https://via.placeholder.com/500x750?text=No+Image';
 
+    const isFavorite = favorites.some((fav) => fav.id === id);
+
+    const handleFavoriteClick = () => {
+        if (isFavorite) {
+            dispatch(removeFromFavorites(id));
+        } else {
+            dispatch(addToFavorites(movie));
+        }
+    };
+
     return (
-        <div style={{
-            width: '200px',
-            textAlign: 'center',
-            border: '1px solid #ddd',
-            borderRadius: '10px',
-            overflow: 'hidden',
-            backgroundColor: '#fff',
-            boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
-        }}>
+        <div className="movie-card" style={{ width: '200px' }}> {/* Keep width for Home page layout consistency if needed, or rely on grid */}
             <img
                 src={imageUrl}
                 alt={title}
-                style={{ width: '100%', height: '300px', objectFit: 'cover' }}
+                className="movie-image"
             />
-            <div style={{ padding: '10px' }}>
-                <h4 style={{ fontSize: '16px', margin: '10px 0 5px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={title}>
+            <div className="movie-content">
+                <h4 className="movie-title" title={title} style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                     {title}
                 </h4>
                 <p style={{ margin: '5px 0', fontSize: '14px', color: '#666' }}>
@@ -32,9 +39,13 @@ const MovieCard = ({ movie }) => {
                 <p style={{ margin: '5px 0', fontSize: '14px', fontWeight: 'bold', color: '#f5c518' }}>
                     ★ {vote_average ? vote_average.toFixed(1) : 'N/A'}
                 </p>
-                {/*<p style={{ margin: '5px 0', fontSize: '12px', color: '#999' }}>
-                    Duration: N/A
-                </p>*/}
+
+                <button
+                    className={`btn ${isFavorite ? 'btn-remove' : 'btn-add'}`}
+                    onClick={handleFavoriteClick}
+                >
+                    {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+                </button>
             </div>
         </div>
     );
