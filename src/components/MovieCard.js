@@ -15,7 +15,9 @@ const MovieCard = ({ movie }) => {
 
     const isFavorite = favorites.some((fav) => fav.id === id);
 
-    const handleFavoriteClick = () => {
+    const handleFavoriteClick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         if (isFavorite) {
             dispatch(removeFromFavorites(id));
         } else {
@@ -25,9 +27,9 @@ const MovieCard = ({ movie }) => {
 
     return (
         <Link
-    to={`/movie/${movie.id}`}
-    style={{ textDecoration: "none", color: "inherit" }}
-  >
+            to={`/movie/${movie.id}`}
+            style={{ textDecoration: "none", color: "inherit" }}
+        >
         <div className="movie-card" style={{ width: '200px' }}> {/* Keep width for Home page layout consistency if needed, or rely on grid */}
           
         
