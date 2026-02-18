@@ -24,7 +24,10 @@ const initialState = {
 
 // 1. Fetch Popular Movies (TUGAS MEMBER 2: HOME PAGE)
 // TODO: Implement fetchPopularMovies di sini
-// export const fetchPopularMovies = ...
+export const fetchPopularMovies = createAsyncThunk('movies/fetchPopularMovies', async () => {
+    const response = await api.get('/discover/movie?sort_by=popularity.desc');
+    return response.data.results;
+});
 
 // 2. Search Movies (TUGAS MEMBER 3: SEARCH PAGE)
 // TODO: Implement searchMovies di sini (terima parameter query)
@@ -71,8 +74,39 @@ const movieSlice = createSlice({
         (movie) => movie.id !== action.payload,
       );
     },
-    clearDetail: (state) => {
-      state.movieDetail = null;
+    extraReducers: (builder) => {
+        builder
+            // ===============================================================
+            // HANDLE ASYNC ACTIONS (PENDING, FULFILLED, REJECTED)
+            // ===============================================================
+
+            // 1. Handle fetchPopularMovies (MEMBER 2)
+            .addCase(fetchPopularMovies.pending, (state) => {
+                // TODO: Set loading true
+                state.loading = true;
+            })
+            .addCase(fetchPopularMovies.fulfilled, (state, action) => {
+                // TODO: Set loading false, simpan data ke state.movies
+                state.loading = false;
+                state.movies = action.payload;
+            })
+            .addCase(fetchPopularMovies.rejected, (state, action) => {
+                // TODO: Set loading false, simpan error message
+                state.loading = false;
+                state.error = action.error.message; 
+            })
+
+        // 2. Handle searchMovies 
+        // TODO: Tambahkan .addCase untuk searchMovies di sini...
+
+        // 3. Handle fetchMovieDetail 
+        // TODO: Tambahkan .addCase untuk fetchMovieDetail di sini...
+
+        // 4. Handle fetchGenres 
+        // TODO: Tambahkan .addCase untuk fetchGenres di sini...
+
+        // 5. Handle fetchMoviesByGenre 
+        // TODO: Tambahkan .addCase untuk fetchMoviesByGenre di sini...
     },
   },
   extraReducers: (builder) => {

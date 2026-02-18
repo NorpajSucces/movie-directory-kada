@@ -10,21 +10,8 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <nav className="navbar">
-          <div className="navbar-logo">🎬 MovieApp</div>
+        <Navbar />
 
-          <ul className="navbar-links">
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/search">Search</Link>
-            </li>
-            <li>
-              <Link to="/favorites">Favorites</Link>
-            </li>
-          </ul>
-        </nav>
 
         <Routes>
           <Route path="/" element={<Home />} />
