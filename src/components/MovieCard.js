@@ -30,33 +30,33 @@ const MovieCard = ({ movie }) => {
             to={`/movie/${movie.id}`}
             style={{ textDecoration: "none", color: "inherit" }}
         >
-        <div className="movie-card" style={{ width: '200px' }}> {/* Keep width for Home page layout consistency if needed, or rely on grid */}
-          
-        
-            <img
-                src={imageUrl}
-                alt={title}
-                className="movie-image"
-            />
-            <div className="movie-content">
-                <h4 className="movie-title" title={title} style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                    {title}
-                </h4>
-                <p style={{ margin: '5px 0', fontSize: '14px', color: '#666' }}>
-                    Year: {year}
-                </p>
-                <p style={{ margin: '5px 0', fontSize: '14px', fontWeight: 'bold', color: '#f5c518' }}>
-                    ★ {vote_average ? vote_average.toFixed(1) : 'N/A'}
-                </p>
+            <div className="movie-card" style={{ width: '200px' }}> {/* Keep width for Home page layout consistency if needed, or rely on grid */}
 
-                <button
-                    className={`btn ${isFavorite ? 'btn-remove' : 'btn-add'}`}
-                    onClick={handleFavoriteClick}
-                >
-                    {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-                </button>
+
+                <img
+                    src={imageUrl}
+                    alt={title}
+                    className="movie-image"
+                />
+                <div className="movie-content">
+                    <h4 className="movie-title" title={title} style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        {title}
+                    </h4>
+                    <p style={{ margin: '5px 0', fontSize: '14px', color: '#666' }}>
+                        Year: {year}
+                    </p>
+                    <p style={{ margin: '5px 0', fontSize: '14px', fontWeight: 'bold', color: '#f5c518' }}>
+                        ★ {vote_average ? vote_average.toFixed(1) : 'N/A'}
+                    </p>
+
+                    <button
+                        className={`btn ${isFavorite ? 'btn-remove' : 'btn-add'}`}
+                        onClick={handleFavoriteClick}
+                    >
+                        {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+                    </button>
+                </div>
             </div>
-        </div>
         </Link>
     );
 };

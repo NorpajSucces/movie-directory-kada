@@ -18,12 +18,29 @@ const Search = () => {
 
     return (
         <div>
-            <h1>Search Page</h1>
+            <h1></h1>
             {/* TODO: Render Search Input & Results Here */}
-            <form onSubmit={handleSubmit}>
-                <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
-                <button type="submit">Search</button>
-            </form>
+            <div className="search-container">
+                <form onSubmit={handleSubmit} className="search-form">
+                    <input
+                        type="text"
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                        placeholder="Search for a movie..."
+                        className="search-input"
+                    />
+                    {query && (
+                        <button
+                            type="button"
+                            className="clear-btn"
+                            onClick={() => setQuery('')}
+                        >
+                            ✕
+                        </button>
+                    )}
+                    <button type="submit" className="search-btn">Search</button>
+                </form>
+            </div>
             {loading ? <p>Loading...</p> : error ? <p>{error}</p> : <div className="movie-grid">{movies.map((movie) => (<MovieCard key={movie.id} movie={movie} />))}</div>}
         </div>
     );
