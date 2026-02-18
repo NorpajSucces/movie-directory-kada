@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 const MovieCard = ({ movie }) => {
     const { title, poster_path, release_date, vote_average } = movie;
@@ -8,6 +9,10 @@ const MovieCard = ({ movie }) => {
         : 'https://via.placeholder.com/500x750?text=No+Image';
 
     return (
+          <Link
+    to={`/movie/${movie.id}`}
+    style={{ textDecoration: "none", color: "inherit" }}
+  >
         <div style={{
             width: '200px',
             textAlign: 'center',
@@ -37,6 +42,7 @@ const MovieCard = ({ movie }) => {
                 </p>*/}
             </div>
         </div>
+        </Link>
     );
 };
 

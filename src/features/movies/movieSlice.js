@@ -5,6 +5,7 @@ import api from "../../services/api";
 const initialState = {
   movies: [],
   movieDetail: null,
+  cast: [],
   genres: [],
   favorites: [],
   loading: false,
@@ -40,7 +41,30 @@ export const searchMovies = createAsyncThunk('movies/searchMovies', async (query
 // 3. Fetch Movie Detail (TUGAS MEMBER 4: MOVIE DETAIL)
 // TODO: Implement fetchMovieDetail di sini (terima parameter id)
 // export const fetchMovieDetail = ...
+export const fetchMovieDetail = createAsyncThunk(
+  "movies/fetchMovieDetail",
+  async (movieId, { rejectWithValue }) => {
+    try {
+      const response = await api.get(`/movie/${movieId}`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
+// 4. MOVIE CREDITS (ACTORS) ✅
+export const fetchMovieCredits = createAsyncThunk(
+  "movies/fetchMovieCredits",
+  async (movieId, { rejectWithValue }) => {
+    try {
+      const response = await api.get(`/movie/${movieId}/credits`);
+      return response.data.cast;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 // 4. Fetch Genres (TUGAS MEMBER 5: CATEGORY PAGE)
 // TODO: Implement fetchGenres di sini
 // export const fetchGenres = ...
@@ -66,6 +90,13 @@ const movieSlice = createSlice({
         (movie) => movie.id !== action.payload,
       );
     },
+
+      clearDetail: (state) => {
+        state.movieDetail = null;
+        state.cast = [];
+      },    
+    },
+
     extraReducers: (builder) => {
         builder
             // ===============================================================
@@ -105,13 +136,43 @@ const movieSlice = createSlice({
 
         // 3. Handle fetchMovieDetail 
         // TODO: Tambahkan .addCase untuk fetchMovieDetail di sini...
+        // 3. Handle fetchMovieDetail
+  
+        // ===== MOVIE DETAIL =====
+      .addCase(fetchMovieDetail.pending, (state) => {
+        state.loading = true;
+        state.movieDetail = null;
+      })
+      .addCase(fetchMovieDetail.fulfilled, (state, action) => {
+        state.loading = false;
+        state.movieDetail = action.payload;
+      })
+      .addCase(fetchMovieDetail.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+     // ===== MOVIE CREDITS (ACTORS)  =====
+      .addCase(fetchMovieCredits.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchMovieCredits.fulfilled, (state, action) => {
+        state.loading = false;
+        state.cast = action.payload;
+      })
+      .addCase(fetchMovieCredits.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+     });
+  },
+});
 
         // 4. Handle fetchGenres 
         // TODO: Tambahkan .addCase untuk fetchGenres di sini...
 
         // 5. Handle fetchMoviesByGenre 
         // TODO: Tambahkan .addCase untuk fetchMoviesByGenre di sini...
-    },
+  /*  },
   },
   extraReducers: (builder) => {
     builder
@@ -150,6 +211,7 @@ const movieSlice = createSlice({
 
     // 3. Handle fetchMovieDetail
     // TODO: Tambahkan .addCase untuk fetchMovieDetail di sini...
+    
 
     // 4. Handle fetchGenres
     // TODO: Tambahkan .addCase untuk fetchGenres di sini...
@@ -157,7 +219,7 @@ const movieSlice = createSlice({
     // 5. Handle fetchMoviesByGenre
     // TODO: Tambahkan .addCase untuk fetchMoviesByGenre di sini...
   },
-});
+});*/
 
 export const { addToFavorites, removeFromFavorites, clearDetail } =
   movieSlice.actions;
