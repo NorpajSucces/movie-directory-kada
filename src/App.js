@@ -1,12 +1,11 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Search from './pages/Search';
-import MovieDetail from './pages/MovieDetail';
-import Favorites from './pages/Favorites';
-import Category from './pages/Category';
-
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Home from "./pages/Home";
+import Search from "./pages/Search";
+import MovieDetail from "./pages/MovieDetail";
+import Favorites from "./pages/Favorites";
+import Category from "./pages/Category";
+import "./App.css";
 function App() {
   return (
     <Router>
