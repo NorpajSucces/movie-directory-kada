@@ -31,19 +31,11 @@ export const fetchPopularMovies = createAsyncThunk('movies/fetchPopularMovies', 
 
 // 2. Search Movies (TUGAS MEMBER 3: SEARCH PAGE)
 // TODO: Implement searchMovies di sini (terima parameter query)
-// export const searchMovies = ...
-// 1️⃣ Fetch Popular Movies
-export const fetchPopularMovies = createAsyncThunk(
-  "movies/fetchPopularMovies",
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await api.get("/movie/popular");
-      return response.data.results;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  },
-);
+export const searchMovies = createAsyncThunk('movies/searchMovies', async (query) => {
+    const response = await api.get(`/search/movie?query=${query}`);
+    return response.data.results;
+});
+
 
 // 3. Fetch Movie Detail (TUGAS MEMBER 4: MOVIE DETAIL)
 // TODO: Implement fetchMovieDetail di sini (terima parameter id)
@@ -98,6 +90,18 @@ const movieSlice = createSlice({
 
         // 2. Handle searchMovies 
         // TODO: Tambahkan .addCase untuk searchMovies di sini...
+        .addCase(searchMovies.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(searchMovies.fulfilled, (state, action) => {
+            state.loading = false;
+            state.movies = action.payload;
+        })
+        .addCase(searchMovies.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        })
 
         // 3. Handle fetchMovieDetail 
         // TODO: Tambahkan .addCase untuk fetchMovieDetail di sini...
@@ -127,10 +131,22 @@ const movieSlice = createSlice({
       .addCase(fetchPopularMovies.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      });
+      })
 
     // 2. Handle searchMovies
     // TODO: Tambahkan .addCase untuk searchMovies di sini...
+    .addCase(searchMovies.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+    })
+    .addCase(searchMovies.fulfilled, (state, action) => {
+        state.loading = false;
+        state.movies = action.payload;
+    })
+    .addCase(searchMovies.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+    })
 
     // 3. Handle fetchMovieDetail
     // TODO: Tambahkan .addCase untuk fetchMovieDetail di sini...

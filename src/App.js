@@ -6,6 +6,8 @@ import MovieDetail from "./pages/MovieDetail";
 import Favorites from "./pages/Favorites";
 import Category from "./pages/Category";
 import "./App.css";
+import Navbar from "./components/Navbar";
+
 function App() {
   return (
     <Router>
