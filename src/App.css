@@ -232,3 +232,87 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   border-color: #ccc;
 }
+
+/* ================= MOVIE DETAIL PAGE ================= */
+.detail-backdrop {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 40px;
+}
+
+.detail-top {
+  display: flex;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.detail-poster {
+  width: 300px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  flex-shrink: 0;
+}
+
+.detail-info {
+  max-width: 700px;
+}
+
+.detail-cast {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding-top: 10px;
+}
+
+.cast-card {
+  width: 140px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .detail-top {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .detail-poster {
+    width: 220px;
+  }
+
+  .detail-info {
+    max-width: 100%;
+  }
+
+  .detail-backdrop {
+    padding: 20px;
+  }
+}
+
+/* ================= CATEGORY PAGE ================= */
+.genre-btn {
+  padding: 10px 22px;
+  border: 1px solid #dfe6e9;
+  border-radius: 30px;
+  background-color: #fff;
+  color: #636e72;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.genre-btn:hover {
+  background-color: #0984e3;
+  color: #fff;
+  border-color: #0984e3;
+}
+
+.genre-btn.active {
+  background-color: #0984e3;
+  color: #fff;
+  border-color: #0984e3;
+  box-shadow: 0 4px 10px rgba(9, 132, 227, 0.3);
+}

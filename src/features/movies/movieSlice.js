@@ -195,55 +195,6 @@ const movieSlice = createSlice({
   },
 });
 
-        
-  /*  },
-  },
-  extraReducers: (builder) => {
-    builder
-      // ===============================================================
-      // HANDLE ASYNC ACTIONS (PENDING, FULFILLED, REJECTED)
-      // ===============================================================
-
-      // 1. Handle fetchPopularMovies (MEMBER 2)
-      .addCase(fetchPopularMovies.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchPopularMovies.fulfilled, (state, action) => {
-        state.loading = false;
-        state.movies = action.payload;
-      })
-      .addCase(fetchPopularMovies.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-
-    // 2. Handle searchMovies
-    // TODO: Tambahkan .addCase untuk searchMovies di sini...
-    .addCase(searchMovies.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-    })
-    .addCase(searchMovies.fulfilled, (state, action) => {
-        state.loading = false;
-        state.movies = action.payload;
-    })
-    .addCase(searchMovies.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-    })
-
-    // 3. Handle fetchMovieDetail
-    // TODO: Tambahkan .addCase untuk fetchMovieDetail di sini...
-    
-
-    // 4. Handle fetchGenres
-    // TODO: Tambahkan .addCase untuk fetchGenres di sini...
-
-    // 5. Handle fetchMoviesByGenre
-    // TODO: Tambahkan .addCase untuk fetchMoviesByGenre di sini...
-  },
-});*/
 
 export const { addToFavorites, removeFromFavorites, clearDetail } =
   movieSlice.actions;
