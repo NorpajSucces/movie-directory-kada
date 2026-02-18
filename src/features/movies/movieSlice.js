@@ -68,10 +68,18 @@ export const fetchMovieCredits = createAsyncThunk(
 // 4. Fetch Genres (TUGAS MEMBER 5: CATEGORY PAGE)
 // TODO: Implement fetchGenres di sini
 // export const fetchGenres = ...
+export const fetchGenres = createAsyncThunk('movies/fetchGenres', async () => {
+  const response = await api.get('/genre/movie/list');
+  return response.data.genres;
+});
 
 // 5. Fetch Movies by Genre (TUGAS MEMBER 5: CATEGORY PAGE)
 // TODO: Implement fetchMoviesByGenre di sini (terima parameter genreId)
 // export const fetchMoviesByGenre = ...
+export const fetchMoviesByGenre = createAsyncThunk('movies/fetchMoviesByGenre', async (genreId) => {
+  const response = await api.get(`/discover/movie?with_genres=${genreId}`);
+  return response.data.results;
+});
 
 const movieSlice = createSlice({
   name: "movies",
@@ -163,15 +171,31 @@ const movieSlice = createSlice({
       .addCase(fetchMovieCredits.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-     });
-  },
-});
+     })
 
-        // 4. Handle fetchGenres 
+     // 4. Handle fetchGenres 
         // TODO: Tambahkan .addCase untuk fetchGenres di sini...
+        .addCase(fetchGenres.fulfilled, (state, action) => {
+        state.genres = action.payload;
+      })
 
         // 5. Handle fetchMoviesByGenre 
         // TODO: Tambahkan .addCase untuk fetchMoviesByGenre di sini...
+        .addCase(fetchMoviesByGenre.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchMoviesByGenre.fulfilled, (state, action) => {
+        state.loading = false;
+        state.movies = action.payload; // Mengupdate list film sesuai kategori
+      })
+      .addCase(fetchMoviesByGenre.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+  },
+});
+
+        
   /*  },
   },
   extraReducers: (builder) => {
