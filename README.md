@@ -62,12 +62,6 @@ T
    npm install
    ```
 
-3. **Buat File `.env`**
-   Buat file baru bernama `.env` di root folder, lalu isi:
-   ```env
-   REACT_APP_TMDB_API_KEY=bc998fa94ab6a96a40fc661452272274
-   REACT_APP_TMDB_BASE_URL=https://api.themoviedb.org/3
-   ```
 
 4. **Jalankan Project**
    ```bash
