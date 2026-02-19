@@ -1,0 +1,38 @@
+<svg width="440" height="120" viewBox="0 0 440 120" xmlns="http://www.w3.org/2000/svg">
+  <rect width="440" height="120" fill="none"></rect>
+
+  <!-- ICON: MOVIE SLATE -->
+  <g transform="translate(20,20)">
+    <!-- Outer Circle -->
+    <circle cx="40" cy="40" r="38" fill="url(#grad1)"></circle>
+
+    <!-- Slate Top -->
+    <polygon points="18,28 56,20 60,28 22,36" fill="#ffffff"></polygon>
+
+    <!-- Slate Body -->
+    <rect x="20" y="34" rx="4" ry="4" width="40" height="26" fill="#ffffff"></rect>
+
+    <!-- Slate Lines -->
+    <line x1="26" y1="42" x2="54" y2="42" stroke="#6366f1" stroke-width="2"></line>
+    <line x1="26" y1="48" x2="54" y2="48" stroke="#6366f1" stroke-width="2"></line>
+  </g>
+
+  <!-- TEXT (BRIGHT) -->
+  <text x="120" y="70" font-family="Poppins, Segoe UI, Inter, Arial, sans-serif" font-size="42" font-weight="800">
+    <tspan fill="#22d3ee">Movie</tspan>
+    <tspan fill="#8b5cf6">Nest</tspan>
+  </text>
+
+  <!-- TAGLINE -->
+  <text x="122" y="94" font-family="Poppins, Segoe UI, Inter, Arial, sans-serif" font-size="14" fill="#38bdf8">
+    Discover • Watch • Enjoy
+  </text>
+
+  <!-- GRADIENT -->
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"></stop>
+      <stop offset="100%" stop-color="#818cf8"></stop>
+    </linearGradient>
+  </defs>
+</svg>
