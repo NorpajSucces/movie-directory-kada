@@ -18,7 +18,6 @@ const Search = () => {
 
     return (
         <div>
-            <h1></h1>
             {/* TODO: Render Search Input & Results Here */}
             <div className="search-container">
                 <form onSubmit={handleSubmit} className="search-form">
